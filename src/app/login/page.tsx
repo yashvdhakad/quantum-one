@@ -2,14 +2,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import Image from "next/image";
-import bg from "@/app/assets/x.gif"
+import bg from "@/app/assets/x.gif";
 
 const page = () => {
   return (
     <main className="h-screen grid sm:grid-cols-12">
       <section className="col-span-7 flex items-center justify-center flex-col gap-y-4 relative">
-        <Image className="w-full h-full opacity-30 absolute -z-10" src={bg} alt="bg" />
-        <h1 className="text-7xl font-black text-yellow-400 italic tracking-tight text-center uppercase">Quantum One</h1>
+        <Image
+          className="w-full h-full opacity-30 absolute -z-10"
+          src={bg}
+          alt="bg"
+        />
+        <h1 className="text-7xl font-black text-yellow-400 italic tracking-tight text-center uppercase">
+          Quantum One
+        </h1>
         {/* <p className="text-muted-foreground">
           Building your business Quantums, One at a time!
         </p> */}
