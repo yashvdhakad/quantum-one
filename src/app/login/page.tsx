@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 import Image from "next/image";
-import bg from "@/app/assets/x.gif";
+import bg from "@/assets/x.gif";
 
 const page = () => {
   return (
@@ -43,6 +43,10 @@ const page = () => {
             <FaGithub /> &nbsp; Github
           </Button>
         </div>
+        <p className="w-1/2 text-sm text-muted-foreground text-center">
+          By clicking continue, you agree to our Terms of Service and Privacy
+          Policy.
+        </p>
       </section>
     </main>
   );
