@@ -16,16 +16,27 @@ export default function Page() {
   return (
     <main className="w-full h-screen flex flex-col justify-between items-center">
       <section className="w-full m-4">
-        <nav className="p-2 flex justify-between items-center border rounded-md bg-slate-50/5 backdrop-blur">
-          <div>Q1</div>
+        <nav className="max-w-7xl mx-auto p-2 flex justify-between items-center border rounded-md bg-slate-50/5 backdrop-blur">
+          <div className="font-bold">Quantum One</div>
           <ul className="flex gap-6">
-            <li><Link href="/login">Features</Link></li>
-            <li><Link href="/login">Pricing</Link></li>
-            <li><Link href="/login">More Products</Link></li>
-            <li><Link href="/login">Contact</Link></li>
+            <li className="hover:text-slate-300">
+              <Link href="/login">Case Studies</Link>
+            </li>
+            <li className="hover:text-slate-300">
+              <Link href="/login">Pricing</Link>
+            </li>
+            <li className="hover:text-slate-300">
+              <Link href="/login">More Products</Link>
+            </li>
+            <li className="hover:text-slate-300">
+              <Link href="/login">Contact</Link>
+            </li>
+            <li className="hover:text-slate-300">
+              <Link href="/dashboard">Dashboard</Link>
+            </li>
           </ul>
           <div className="flex justify-center items-center gap-6">
-            <div>
+            <div className="hover:text-slate-300">
               <Link href="/login">Login</Link>
             </div>
             <DropdownMenu>
@@ -51,10 +62,14 @@ export default function Page() {
           </div>
         </nav>
       </section>
-      <section>
-        <h1>Quantum One</h1>
+      <section className="w-full h-screen px-6 flex justify-center items-center">
+        <h1 className="text-6xl font-bold text-center uppercase">
+          Quantum One
+        </h1>
       </section>
-      <section>&copy; Quantum One 2024</section>
+      <section className="m-4 text-center p-2 border rounded-md bg-slate-50/5 backdrop-blur text-sm">
+        &copy; Quantum One 2024 | All Rights Reserved.
+      </section>
     </main>
   );
 }
