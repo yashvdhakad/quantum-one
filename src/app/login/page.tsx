@@ -4,15 +4,11 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import bg from "@/assets/x.gif";
 
-const page = () => {
+export default function Page() {
   return (
     <main className="h-screen grid sm:grid-cols-12">
       <section className="col-span-6 flex items-center justify-center flex-col gap-y-4 relative">
-        <Image
-          className="w-full h-full absolute -z-10"
-          src={bg}
-          alt="bg"
-        />
+        <Image className="w-full h-full absolute -z-10" src={bg} alt="bg" />
         <h1 className="text-7xl text-white font-black italic tracking-tight text-center uppercase">
           Q1
         </h1>
@@ -44,12 +40,12 @@ const page = () => {
           </Button>
         </div>
         <p className="w-1/2 text-xs text-muted-foreground text-center">
-          By clicking continue, you agree to our <span className="underline underline-offset-2">Terms of Service</span> and <span className="underline underline-offset-2">Privacy
-          Policy</span>.
+          By clicking continue, you agree to our{" "}
+          <span className="underline underline-offset-2">Terms of Service</span>{" "}
+          and{" "}
+          <span className="underline underline-offset-2">Privacy Policy</span>.
         </p>
       </section>
     </main>
   );
-};
-
-export default page;
+}
