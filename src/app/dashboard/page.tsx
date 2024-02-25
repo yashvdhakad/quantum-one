@@ -9,11 +9,17 @@ const page = () => {
   const decrement = useCounterStore((state) => state.decrement);
 
   return (
-    <>
-      <div>{count}</div>
-      <Button variant={"outline"} onClick={() => increment()}>Increment</Button>
-      <Button variant={"outline"} onClick={() => decrement()}>Decrement</Button>
-    </>
+    <main>
+      <section className="h-screen flex flex-col items-center justify-center gap-4">
+        <div className="text-4xl font-bold">{count}</div>
+        <Button variant={"outline"} onClick={() => increment()}>
+          Increment
+        </Button>
+        <Button variant={"outline"} onClick={() => decrement()}>
+          Decrement
+        </Button>
+      </section>
+    </main>
   );
 };
 
