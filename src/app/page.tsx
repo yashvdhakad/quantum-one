@@ -18,26 +18,26 @@ export default function Page() {
       <section className="w-full m-4">
         <nav className="max-w-7xl mx-auto p-2 flex justify-between items-center border rounded-md bg-slate-50/5 backdrop-blur">
           <div className="font-bold">Quantum One</div>
-          <ul className="flex gap-6">
+          <ul className="flex gap-4">
             <li className="hover:text-slate-300">
-              <Link href="/login">Case Studies</Link>
+              <Link href="/login"><Button variant="outline">Case Studies</Button></Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/login">Pricing</Link>
+              <Link href="/login"><Button variant="outline">Pricing</Button></Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/login">More Products</Link>
+              <Link href="/login"><Button variant="outline">More Products</Button></Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/login">Contact</Link>
+              <Link href="/login"><Button variant="outline">Contact</Button></Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/dashboard">Dashboard</Link>
+              <Link href="/dashboard"><Button variant="outline">Dashboard</Button></Link>
             </li>
           </ul>
-          <div className="flex justify-center items-center gap-6">
+          <div className="flex justify-center items-center gap-4">
             <div className="hover:text-slate-300">
-              <Link href="/login">Login</Link>
+              <Link href="/login"><Button variant="outline">Login</Button></Link>
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>

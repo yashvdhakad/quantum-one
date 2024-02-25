@@ -43,9 +43,9 @@ const page = () => {
             <FaGithub /> &nbsp; Github
           </Button>
         </div>
-        <p className="w-1/2 text-sm text-muted-foreground text-center">
-          By clicking continue, you agree to our Terms of Service and Privacy
-          Policy.
+        <p className="w-1/2 text-xs text-muted-foreground text-center">
+          By clicking continue, you agree to our <span className="underline underline-offset-2">Terms of Service</span> and <span className="underline underline-offset-2">Privacy
+          Policy</span>.
         </p>
       </section>
     </main>
