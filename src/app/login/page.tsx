@@ -25,13 +25,13 @@ export default function Page() {
             Enter your email below to create your account.
           </p>
         </div>
-        <div className="w-full flex gap-x-2">
+        <div className="w-1/2 flex flex-col gap-2">
           <Input type="email" placeholder="name@example.com" />
           <Input type="password" placeholder="password" />
         </div>
-        <Button className="w-full">Sign In with Email</Button>
+        <Button className="w-1/2">Sign In with Email</Button>
         <p className="text-sm text-muted-foreground">or continue with</p>
-        <div className="w-full flex gap-x-2">
+        <div className="w-1/2 flex flex-col gap-2">
           <Button variant="outline" className="w-full">
             <FaGoogle /> &nbsp; Google
           </Button>
