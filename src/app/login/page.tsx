@@ -35,9 +35,9 @@ export default function Page() {
           <Button variant="outline" className="w-full">
             <FaGoogle /> &nbsp; Google
           </Button>
-          <Button variant="outline" className="w-full">
+          {/* <Button variant="outline" className="w-full">
             <FaGithub /> &nbsp; Github
-          </Button>
+          </Button> */}
         </div>
         <p className="w-1/2 text-xs text-muted-foreground text-center">
           By clicking continue, you agree to our{" "}
