@@ -1,22 +1,54 @@
+"use client";
+import { useState } from "react";
+import { account, ID } from "../appwrite";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import bg from "@/assets/x.gif";
 
 export default function Page() {
+  const [loggedInUser, setLoggedInUser] = useState<{ email: string } | null>(
+    null
+  );
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = async (email: string, password: string) => {
+    const session = await account.createEmailPasswordSession(email, password);
+    setLoggedInUser(await account.get());
+  };
+
+  const register = async () => {
+    await account.create(ID.unique(), email, password);
+    login(email, password);
+  };
+
+  const logout = async () => {
+    await account.deleteSession("current");
+    setLoggedInUser(null);
+  };
+
+  if (loggedInUser) {
+    return (
+      <div>
+        <p>Logged in as {loggedInUser.email}</p>
+        <button type="button" onClick={logout}>
+          Logout
+        </button>
+      </div>
+    );
+  }
+
   return (
     <main className="h-screen grid sm:grid-cols-12">
       <section className="col-span-6 flex items-center justify-center flex-col gap-y-4 relative">
-        <Image className="w-full h-full absolute -z-10" src={bg} alt="bg" />
-        <h1 className="text-7xl text-white font-black italic tracking-tight text-center uppercase">
+        {/* <Image className="w-full h-full absolute -z-10" src={bg} alt="bg" /> */}
+        <h1 className="text-9xl font-black tracking-tight text-center uppercase">
           Q1
         </h1>
-        {/* <p className="text-muted-foreground">
-          Building your business Quantums, One at a time!
-        </p> */}
       </section>
-      <section className="px-20 flex items-center justify-center flex-col gap-y-4 col-span-6 bg-gradient-to-br from-slate-950 to-slate-900">
+      <section className="px-20 flex items-center justify-center flex-col gap-y-4 col-span-6">
         <div className="text-center">
           <h3 className="text-2xl font-semibold tracking-tight">
             Create an account
@@ -26,18 +58,30 @@ export default function Page() {
           </p>
         </div>
         <div className="w-1/2 flex flex-col gap-2">
-          <Input type="email" placeholder="name@example.com" />
-          <Input type="password" placeholder="password" />
+          <Input
+            type="email"
+            placeholder="name@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </div>
-        <Button className="w-1/2">Sign In with Email</Button>
+        <Button className="w-1/2" onClick={() => login(email, password)}>
+          Login
+        </Button>
+        <Button className="w-1/2" onClick={register}>
+          Sign Up
+        </Button>
         <p className="text-sm text-muted-foreground">or continue with</p>
         <div className="w-1/2 flex flex-col gap-2">
           <Button variant="outline" className="w-full">
             <FaGoogle /> &nbsp; Google
           </Button>
-          {/* <Button variant="outline" className="w-full">
-            <FaGithub /> &nbsp; Github
-          </Button> */}
         </div>
         <p className="w-1/2 text-xs text-muted-foreground text-center">
           By clicking continue, you agree to our{" "}
