@@ -11,7 +11,7 @@ import bg2 from "@/assets/logo-black.png";
 import Link from "next/link";
 
 export default function Page() {
-  const [loggedInUser, setLoggedInUser] = useState<{ email: string } | null>(
+  const [loggedInUser, setLoggedInUser] = useState<{ name: string } | null>(
     null
   );
   const [email, setEmail] = useState("");
@@ -22,11 +22,6 @@ export default function Page() {
     setLoggedInUser(await account.get());
   };
 
-  const register = async () => {
-    await account.create(ID.unique(), email, password);
-    login(email, password);
-  };
-
   const logout = async () => {
     await account.deleteSession("current");
     setLoggedInUser(null);
@@ -35,13 +30,13 @@ export default function Page() {
   if (loggedInUser) {
     return (
       <div>
-        <h1>Logged in as {loggedInUser.email}</h1>
+        <h1>Logged in as {loggedInUser.name}</h1>
         <Button onClick={logout}>Logout</Button>
       </div>
     );
   }
-
-  const { theme } = useTheme();
+  const theme = undefined;
+  // const { theme } = useTheme();
 
   return (
     <main className="h-screen grid sm:grid-cols-12">

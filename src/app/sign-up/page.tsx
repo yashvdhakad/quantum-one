@@ -28,11 +28,6 @@ export default function Page() {
     login(email, password);
   };
 
-  const logout = async () => {
-    await account.deleteSession("current");
-    setLoggedInUser(null);
-  };
-
   if (loggedInUser) {
     return (
       <section>
@@ -43,8 +38,8 @@ export default function Page() {
       </section>
     );
   }
-
-  const { theme } = useTheme();
+  const theme = undefined;
+  // const { theme } = useTheme();
 
   return (
     <main className="h-screen grid sm:grid-cols-12">
