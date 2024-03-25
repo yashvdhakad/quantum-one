@@ -2,6 +2,7 @@
 
 import useCounterStore from "@/state-store/store";
 import { Button } from "@/components/ui/button";
+import useAuthStore from "@/state-store/authStore";
 
 export default function Page() {
   const count = useCounterStore((state) => state.count);
@@ -9,6 +10,8 @@ export default function Page() {
   const decrement = useCounterStore((state) => state.decrement);
   const name = useCounterStore((state) => state.name);
   const nameChange = useCounterStore((state) => state.nameChange);
+  const email = useAuthStore((state) => state.email);
+  const userEmail = useAuthStore((state) => state.userEmail);
 
   return (
     <main>
@@ -23,6 +26,10 @@ export default function Page() {
         </Button>{" "}
         <Button variant={"outline"} onClick={() => nameChange()}>
           Name Change
+        </Button>
+        <input type="email" name="email" value={email} onChange={(e) => userEmail(e)} />
+        <Button variant={"outline"} onClick={() => console.log(email)}>
+          Email Show
         </Button>
       </section>
     </main>
