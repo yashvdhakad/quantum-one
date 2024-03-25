@@ -8,11 +8,13 @@ import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import bg from "@/assets/logo-white.png";
 import bg2 from "@/assets/logo-black.png";
+import Link from "next/link";
 
 export default function Page() {
   const [loggedInUser, setLoggedInUser] = useState<{ email: string } | null>(
     null
   );
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -22,7 +24,7 @@ export default function Page() {
   };
 
   const register = async () => {
-    await account.create(ID.unique(), email, password);
+    await account.create(ID.unique(), email, password, name);
     login(email, password);
   };
 
@@ -33,12 +35,12 @@ export default function Page() {
 
   if (loggedInUser) {
     return (
-      <div>
-        <h1>Logged in as {loggedInUser.email}</h1>
-        <Button onClick={logout}>
-          Logout
+      <section>
+       <h1> Sign Up Successful!</h1>
+        <Button>
+          <Link href="/login">Login</Link>
         </Button>
-      </div>
+      </section>
     );
   }
 
@@ -55,10 +57,16 @@ export default function Page() {
             Create an account
           </h3>
           <p className="text-sm text-muted-foreground">
-            Enter your email below to create your account.
+            Enter your details below to create your account.
           </p>
         </div>
         <div className="w-1/2 flex flex-col gap-2">
+          <Input
+            type="name"
+            placeholder="your full name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
           <Input
             type="email"
             placeholder="name@example.com"
@@ -72,8 +80,8 @@ export default function Page() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button className="w-1/2" onClick={() => login(email, password)}>
-          Login
+        <Button className="w-1/2" onClick={register}>
+          Sign Up
         </Button>
         <p className="text-sm text-muted-foreground">or continue with</p>
         <div className="w-1/2 flex flex-col gap-2">

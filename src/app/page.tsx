@@ -10,34 +10,54 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { FaMoon, FaSun } from "react-icons/fa";
+import Image from "next/image";
+import bg from "@/assets/logo-white.png";
+import bg2 from "@/assets/logo-black.png";
 
 export default function Page() {
-  const { setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   return (
     <main className="w-full h-screen flex flex-col justify-between items-center">
       <section className="w-full m-4">
         <nav className="max-w-7xl mx-auto p-2 flex justify-between items-center border rounded-md bg-slate-50/5 backdrop-blur">
-          <div className="font-bold">Quantum One</div>
+          <Image className="w-6" src={theme === "dark" ? bg : bg2} alt="Q1" />
           <ul className="flex gap-4">
             <li className="hover:text-slate-300">
-              <Link href="/login"><Button variant="outline">Case Studies</Button></Link>
+              <Link href="/login">
+                <Button variant="outline">Case Studies</Button>
+              </Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/login"><Button variant="outline">Pricing</Button></Link>
+              <Link href="/login">
+                <Button variant="outline">Pricing</Button>
+              </Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/login"><Button variant="outline">More Products</Button></Link>
+              <Link href="/login">
+                <Button variant="outline">More Products</Button>
+              </Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/login"><Button variant="outline">Contact</Button></Link>
+              <Link href="/login">
+                <Button variant="outline">Contact</Button>
+              </Link>
             </li>
             <li className="hover:text-slate-300">
-              <Link href="/dashboard"><Button variant="outline">Dashboard</Button></Link>
+              <Link href="/dashboard">
+                <Button variant="outline">Dashboard</Button>
+              </Link>
             </li>
           </ul>
           <div className="flex justify-center items-center gap-4">
             <div className="hover:text-slate-300">
-              <Link href="/login"><Button variant="outline">Login</Button></Link>
+              <Link href="/login">
+                <Button variant="outline">Login</Button>
+              </Link>
+            </div>
+            <div className="hover:text-slate-300">
+              <Link href="/sign-up">
+                <Button variant="outline">Sign Up</Button>
+              </Link>
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
