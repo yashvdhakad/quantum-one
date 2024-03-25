@@ -52,7 +52,7 @@ export default function Page() {
             Create an account
           </h3>
           <p className="text-sm text-muted-foreground">
-            Already have an account?{" "}
+            Already have an account?&nbsp;
             <span className="underline underline-offset-2">
               <Link href="/login">Login</Link>
             </span>
