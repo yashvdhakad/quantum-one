@@ -20,11 +20,18 @@ export default function Page() {
     <main className="w-full h-screen flex flex-col justify-between items-center">
       <section className="w-full m-4">
         <nav className="max-w-7xl mx-auto p-2 flex justify-between items-center border rounded-md bg-slate-50/5 backdrop-blur">
-          <Image className="w-6" src={theme === "dark" ? bg : bg2} alt="Q1" />
+          <div className="w-32">
+            <Image className="w-6" src={theme === "dark" ? bg : bg2} alt="Q1" />
+          </div>
           <ul className="flex gap-4">
             <li className="hover:text-slate-300">
               <Link href="/login">
-                <Button variant="outline">Case Studies</Button>
+                <Button variant="outline">About</Button>
+              </Link>
+            </li>
+            <li className="hover:text-slate-300">
+              <Link href="/login">
+                <Button variant="outline">All Products</Button>
               </Link>
             </li>
             <li className="hover:text-slate-300">
@@ -34,17 +41,7 @@ export default function Page() {
             </li>
             <li className="hover:text-slate-300">
               <Link href="/login">
-                <Button variant="outline">More Products</Button>
-              </Link>
-            </li>
-            <li className="hover:text-slate-300">
-              <Link href="/login">
                 <Button variant="outline">Contact</Button>
-              </Link>
-            </li>
-            <li className="hover:text-slate-300">
-              <Link href="/dashboard">
-                <Button variant="outline">Dashboard</Button>
               </Link>
             </li>
           </ul>
@@ -52,11 +49,6 @@ export default function Page() {
             <div className="hover:text-slate-300">
               <Link href="/login">
                 <Button variant="outline">Login</Button>
-              </Link>
-            </div>
-            <div className="hover:text-slate-300">
-              <Link href="/sign-up">
-                <Button variant="outline">Sign Up</Button>
               </Link>
             </div>
             <DropdownMenu>
@@ -83,9 +75,7 @@ export default function Page() {
         </nav>
       </section>
       <section className="w-full h-screen px-6 flex justify-center items-center">
-        <h1 className="text-6xl font-bold text-center uppercase">
-          Quantum One
-        </h1>
+        <Image className="animate-pulse" src={theme === "dark" ? bg : bg2} alt="Q1"/>
       </section>
       <section className="m-4 text-center p-2 border rounded-md bg-slate-50/5 backdrop-blur text-sm">
         &copy; Quantum One 2024 | All Rights Reserved.

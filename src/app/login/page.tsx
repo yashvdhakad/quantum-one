@@ -8,6 +8,7 @@ import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import bg from "@/assets/logo-white.png";
 import bg2 from "@/assets/logo-black.png";
+import Link from "next/link";
 
 export default function Page() {
   const [loggedInUser, setLoggedInUser] = useState<{ email: string } | null>(
@@ -35,9 +36,7 @@ export default function Page() {
     return (
       <div>
         <h1>Logged in as {loggedInUser.email}</h1>
-        <Button onClick={logout}>
-          Logout
-        </Button>
+        <Button onClick={logout}>Logout</Button>
       </div>
     );
   }
@@ -52,10 +51,13 @@ export default function Page() {
       <section className="px-20 flex items-center justify-center flex-col gap-y-4 col-span-6">
         <div className="text-center">
           <h3 className="text-2xl font-semibold tracking-tight">
-            Create an account
+            Login to Q1
           </h3>
           <p className="text-sm text-muted-foreground">
-            Enter your email below to create your account.
+            Don't have any account?{" "}
+            <span className="underline underline-offset-2">
+              <Link href="/sign-up">Sign Up</Link>
+            </span>
           </p>
         </div>
         <div className="w-1/2 flex flex-col gap-2">

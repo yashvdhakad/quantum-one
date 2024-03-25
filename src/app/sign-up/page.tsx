@@ -36,7 +36,7 @@ export default function Page() {
   if (loggedInUser) {
     return (
       <section>
-       <h1> Sign Up Successful!</h1>
+        <h1> Sign Up Successful!</h1>
         <Button>
           <Link href="/login">Login</Link>
         </Button>
@@ -57,13 +57,16 @@ export default function Page() {
             Create an account
           </h3>
           <p className="text-sm text-muted-foreground">
-            Enter your details below to create your account.
+            Already have an account?{" "}
+            <span className="underline underline-offset-2">
+              <Link href="/login">Login</Link>
+            </span>
           </p>
         </div>
         <div className="w-1/2 flex flex-col gap-2">
           <Input
             type="name"
-            placeholder="your full name"
+            placeholder="Full Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
