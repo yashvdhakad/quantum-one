@@ -1,14 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useTheme } from "next-themes";
-import { account, ID } from "../appwrite";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import bg from "@/assets/logo-white.png";
-import bg2 from "@/assets/logo-black.png";
 import Link from "next/link";
+import authService from "../appwrite/auth";
 
 export default function Page() {
   const [loggedInUser, setLoggedInUser] = useState<{ name: string } | null>(
@@ -17,13 +15,13 @@ export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = async (email: string, password: string) => {
-    const session = await account.createEmailPasswordSession(email, password);
-    setLoggedInUser(await account.get());
+  const loginHandler = async () => {
+    await authService.login({ email, password });
+    setLoggedInUser(await authService.getCurrentUser());
   };
 
-  const logout = async () => {
-    await account.deleteSession("current");
+  const logoutHandler = async () => {
+    await authService.logout();
     setLoggedInUser(null);
   };
 
@@ -31,23 +29,19 @@ export default function Page() {
     return (
       <div>
         <h1>Logged in as {loggedInUser.name}</h1>
-        <Button onClick={logout}>Logout</Button>
+        <Button onClick={logoutHandler}>Logout</Button>
       </div>
     );
   }
-  const theme = undefined;
-  // const { theme } = useTheme();
 
   return (
     <main className="h-screen grid sm:grid-cols-12">
       <section className="col-span-6 flex items-center justify-center flex-col gap-y-4 relative">
-        <Image className="w-1/6" src={theme === "dark" ? bg : bg2} alt="Q1" />
+        <Image className="w-1/6" src={bg} alt="Q1" />
       </section>
       <section className="px-20 flex items-center justify-center flex-col gap-y-4 col-span-6">
         <div className="text-center">
-          <h3 className="text-2xl font-semibold tracking-tight">
-            Login to Q1
-          </h3>
+          <h3 className="text-2xl font-semibold tracking-tight">Login to Q1</h3>
           <p className="text-sm text-muted-foreground">
             Do not have any account?&nbsp;
             <span className="underline underline-offset-2">
@@ -69,7 +63,7 @@ export default function Page() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button className="w-1/2" onClick={() => login(email, password)}>
+        <Button className="w-1/2" onClick={loginHandler}>
           Login
         </Button>
         <p className="text-sm text-muted-foreground">or continue with</p>

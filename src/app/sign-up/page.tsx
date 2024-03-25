@@ -1,14 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useTheme } from "next-themes";
-import { account, ID } from "../appwrite";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import bg from "@/assets/logo-white.png";
-import bg2 from "@/assets/logo-black.png";
 import Link from "next/link";
+import authService from "../appwrite/auth";
 
 export default function Page() {
   const [loggedInUser, setLoggedInUser] = useState<{ email: string } | null>(
@@ -18,14 +16,9 @@ export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const login = async (email: string, password: string) => {
-    const session = await account.createEmailPasswordSession(email, password);
-    setLoggedInUser(await account.get());
-  };
-
-  const register = async () => {
-    await account.create(ID.unique(), email, password, name);
-    login(email, password);
+  const singUpHandler = async () => {
+    await authService.createAccount({ email, password, name });
+    setLoggedInUser(await authService.getCurrentUser());
   };
 
   if (loggedInUser) {
@@ -38,13 +31,11 @@ export default function Page() {
       </section>
     );
   }
-  const theme = undefined;
-  // const { theme } = useTheme();
 
   return (
     <main className="h-screen grid sm:grid-cols-12">
       <section className="col-span-6 flex items-center justify-center flex-col gap-y-4 relative">
-        <Image className="w-1/6" src={theme === "dark" ? bg : bg2} alt="Q1" />
+        <Image className="w-1/6" src={bg} alt="Q1" />
       </section>
       <section className="px-20 flex items-center justify-center flex-col gap-y-4 col-span-6">
         <div className="text-center">
@@ -78,7 +69,7 @@ export default function Page() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <Button className="w-1/2" onClick={register}>
+        <Button className="w-1/2" onClick={singUpHandler}>
           Sign Up
         </Button>
         <p className="text-sm text-muted-foreground">or continue with</p>
