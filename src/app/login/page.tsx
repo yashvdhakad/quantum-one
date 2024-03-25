@@ -49,7 +49,7 @@ export default function Page() {
             Login to Q1
           </h3>
           <p className="text-sm text-muted-foreground">
-            Don't have any account?{" "}
+            Don't have any account?&nbsp;
             <span className="underline underline-offset-2">
               <Link href="/sign-up">Sign Up</Link>
             </span>
