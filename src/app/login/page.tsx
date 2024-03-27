@@ -7,13 +7,29 @@ import Image from "next/image";
 import bg from "@/assets/logo-white.png";
 import Link from "next/link";
 import authService from "../appwrite/auth";
+import useAuthStore from "@/state-store/authStore";
 
 export default function Page() {
-  const [loggedInUser, setLoggedInUser] = useState<{ name: string } | null>(
-    null
-  );
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // const [loggedInUser, setLoggedInUser] = useState<{ name: string } | null>(
+  //   null
+  // );
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loggedInUser,
+    setLoggedInUser,
+  } = useAuthStore((state) => ({
+    email: state.email,
+    setEmail: state.setEmail,
+    password: state.password,
+    setPassword: state.setPassword,
+    loggedInUser: state.loggedInUser,
+    setLoggedInUser: state.setLoggedInUser,
+  }));
 
   const loginHandler = async () => {
     await authService.login({ email, password });
@@ -22,17 +38,8 @@ export default function Page() {
 
   const logoutHandler = async () => {
     await authService.logout();
-    setLoggedInUser(null);
+    setLoggedInUser({});
   };
-
-  if (loggedInUser) {
-    return (
-      <div>
-        <h1>Logged in as {loggedInUser.name}</h1>
-        <Button onClick={logoutHandler}>Logout</Button>
-      </div>
-    );
-  }
 
   return (
     <main className="h-screen grid sm:grid-cols-12">
@@ -45,7 +52,7 @@ export default function Page() {
           <p className="text-sm text-muted-foreground">
             Do not have any account?&nbsp;
             <span className="underline underline-offset-2">
-              <Link href="/sign-up">Sign Up</Link>
+              <Link href="/auth">Sign Up</Link>
             </span>
           </p>
         </div>
@@ -54,13 +61,13 @@ export default function Page() {
             type="email"
             placeholder="name@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e)}
           />
           <Input
             type="password"
             placeholder="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e)}
           />
         </div>
         <Button className="w-1/2" onClick={loginHandler}>

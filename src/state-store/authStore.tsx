@@ -13,13 +13,13 @@ type AuthStore = {
 
 const useAuthStore = create<AuthStore>((set) => ({
   email: "",
-  setEmail: (e) => set((state) => ({ email: e.target.value })),
+  setEmail: (e) => set(() => ({ email: e.target.value })),
   password: "",
-  setPassword: (e) => set((state) => ({ password: e.target.value })),
+  setPassword: (e) => set(() => ({ password: e.target.value })),
   name: "",
-  setName: (e) => set((state) => ({ name: e.target.value })),
+  setName: (e) => set(() => ({ name: e.target.value })),
   loggedInUser: {},
-  setLoggedInUser: (user: object) => set((state) => ({ loggedInUser: user })),
+  setLoggedInUser: (user: object) => set(() => ({ loggedInUser: user })),
 }));
 
 export default useAuthStore;
