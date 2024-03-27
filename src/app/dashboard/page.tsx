@@ -1,29 +1,20 @@
 "use client";
 
-import useCounterStore from "@/state-store/store";
+import Order from "@/components/Order";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Page() {
-  const count = useCounterStore((state) => state.count);
-  const increment = useCounterStore((state) => state.increment);
-  const decrement = useCounterStore((state) => state.decrement);
-  const name = useCounterStore((state) => state.name);
-  const nameChange = useCounterStore((state) => state.nameChange);
+  const Orders = [1];
 
   return (
-    <main>
-      <section className="h-screen flex flex-col items-center justify-center gap-4">
-        <div className="text-4xl font-bold">{name}</div>
-        <div className="text-4xl font-bold">{count}</div>
-        <Button variant={"outline"} onClick={() => increment()}>
-          Increment
-        </Button>
-        <Button variant={"outline"} onClick={() => decrement()}>
-          Decrement
-        </Button>{" "}
-        <Button variant={"outline"} onClick={() => nameChange()}>
-          Name Change
-        </Button>
+    <main className="h-screen w-full">
+      {/* <section className="h-full w-1/2 m-auto flex flex-col items-center justify-center gap-4">
+        <Input className="h-1/2 flex justify-center items-center" type="file" accept=".txt"/>
+        <Button type="submit">Upload File</Button>
+      </section> */}
+      <section className="">
+        {Orders?.length ? <Order /> : "Please upload order from amazon!"}
       </section>
     </main>
   );

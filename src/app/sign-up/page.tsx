@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FaGoogle } from "react-icons/fa";
@@ -7,30 +6,33 @@ import Image from "next/image";
 import bg from "@/assets/logo-white.png";
 import Link from "next/link";
 import authService from "../appwrite/auth";
+import useAuthStore from "@/state-store/authStore";
 
 export default function Page() {
-  const [loggedInUser, setLoggedInUser] = useState<{ email: string } | null>(
-    null
-  );
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const email = useAuthStore((state) => state.email);
+  const setEmail = useAuthStore((state) => state.setEmail);
+  const password = useAuthStore((state) => state.password);
+  const setPassword = useAuthStore((state) => state.setPassword);
+  const name = useAuthStore((state) => state.name);
+  const setName = useAuthStore((state) => state.setName);
+  const loggedInUser = useAuthStore((state) => state.loggedInUser);
+  const setLoggedInUser = useAuthStore((state) => state.setLoggedInUser);
 
   const singUpHandler = async () => {
     await authService.createAccount({ email, password, name });
     setLoggedInUser(await authService.getCurrentUser());
   };
 
-  if (loggedInUser) {
-    return (
-      <section>
-        <h1> Sign Up Successful!</h1>
-        <Button>
-          <Link href="/login">Login</Link>
-        </Button>
-      </section>
-    );
-  }
+  // if (loggedInUser) {
+  //   return (
+  //     <section>
+  //       <h1> Sign Up Successful!</h1>
+  //       <Button>
+  //         <Link href="/login">Login</Link>
+  //       </Button>
+  //     </section>
+  //   );
+  // }
 
   return (
     <main className="h-screen grid sm:grid-cols-12">
@@ -54,19 +56,19 @@ export default function Page() {
             type="name"
             placeholder="Full Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e)}
           />
           <Input
             type="email"
             placeholder="name@example.com"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e)}
           />
           <Input
             type="password"
             placeholder="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e)}
           />
         </div>
         <Button className="w-1/2" onClick={singUpHandler}>
