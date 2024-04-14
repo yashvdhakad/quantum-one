@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { FaGoogle } from "react-icons/fa";
-import authService from "@/app/appwrite/auth";
+import authService from "@/appwrite/auth";
 import useAuthStore from "@/state-store/authStore";
 
 const Authentication = () => {

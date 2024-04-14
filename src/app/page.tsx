@@ -44,6 +44,11 @@ export default function Page() {
                 <Button variant="outline">Contact</Button>
               </Link>
             </li>
+            <li className="hover:text-slate-300">
+              <Link href="/dashboard">
+                <Button variant="outline">Dashboard</Button>
+              </Link>
+            </li>
           </ul>
           <div className="flex justify-center items-center gap-4">
             <div className="hover:text-slate-300">
@@ -74,9 +79,9 @@ export default function Page() {
           </div>
         </nav>
       </section>
-      <section className="w-full h-screen px-6 flex justify-center items-center">
+      {/* <section className="w-full h-screen px-6 flex justify-center items-center">
         <Image className="animate-pulse" src={theme === "dark" ? bg : bg2} alt="Q1"/>
-      </section>
+      </section> */}
       <section className="m-4 text-center p-2 border rounded-md bg-slate-50/5 backdrop-blur text-sm">
         &copy; Quantum One 2024 | All Rights Reserved.
       </section>

@@ -6,7 +6,7 @@ import { FaGoogle } from "react-icons/fa";
 import Image from "next/image";
 import bg from "@/assets/logo-white.png";
 import Link from "next/link";
-import authService from "../appwrite/auth";
+import authService from "@/appwrite/auth";
 import useAuthStore from "@/state-store/authStore";
 
 export default function Page() {
