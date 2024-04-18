@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import { Input } from "../../components/ui/input";
+import { Button } from "../../components/ui/button";
 import { FaGoogle } from "react-icons/fa";
 import authService from "@/appwrite/auth";
 import useAuthStore from "@/state-store/authStore";

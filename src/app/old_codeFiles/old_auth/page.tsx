@@ -3,7 +3,7 @@ import Image from "next/image";
 import bg from "@/assets/logo-white.png";
 import authService from "@/appwrite/auth";
 import useAuthStore from "@/state-store/authStore";
-import Authentication from "@/components/Authentication";
+import Authentication from "@/app/old_codeFiles/Authentication";
 
 export default function Page() {
   const {

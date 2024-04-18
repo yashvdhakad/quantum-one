@@ -1,47 +1,74 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import useDataStore from "@/state-store/dataStore";
+import { useCallback } from "react";
 
 export default function Page() {
-  const Orders = [1];
-  const [data, setData] = useState<{ [key: string]: string }[]>([]);
-  const [headers, setHeaders] = useState<string[]>([]);
+  const { data, setData, headers, setHeaders } = useDataStore((state) => ({
+    data: state.data,
+    setData: state.setData,
+    headers: state.headers,
+    setHeaders: state.setHeaders,
+  }));
 
-  const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const fileHandler = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        if (e.target?.result) {
-          const content = e.target.result.toString();
-          const rows = content.split("\n");
-          const headers = rows[0].split("\t");
-          const jsonData = [];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (e.target?.result) {
+            const content = e.target.result.toString();
+            const rows = content.split("\n");
+            const headings = rows[0].split("\t");
+            const orders = [];
 
-          for (let i = 1; i < rows.length; i++) {
-            const row = rows[i].split("\t");
-            const obj: { [key: string]: string } = {};
+            for (let i = 1; i < rows.length; i++) {
+              const orderRow = rows[i].split("\t");
+              const order: { [headings: string]: string } = {};
 
-            for (let j = 0; j < headers.length; j++) {
-              obj[headers[j]] = row[j];
+              for (let j = 0; j < headings.length; j++) {
+                order[headings[j]] = orderRow[j];
+              }
+
+              orders.push(order);
             }
 
-            jsonData.push(obj);
+            setData(orders);
+            setHeaders(headings);
           }
+        };
+        reader.readAsText(file);
+      }
+    },
+    [setData]
+  );
 
-          setData(jsonData);
-          setHeaders(headers);
+  const filteredHeaders = headers.filter((header) =>
+    [
+      "order-id",
+      "purchase-date",
+      "buyer-name",
+      "buyer-phone-number",
+      "sku",
+      "quantity-purchased",
+      "promise-date",
+      "customized-url",
+      "product-name",
+    ].includes(header)
+  );
 
-          // console.log(headers);
-          // console.log(jsonData);
-        }
-      };
-      reader.readAsText(file);
-    }
-  };
+  const filteredData = data.map((row) => {
+    const filteredRow: { [key: string]: string } = {};
+    Object.keys(row).forEach((key) => {
+      if (filteredHeaders.includes(key)) {
+        filteredRow[key] = row[key];
+      }
+    });
+    return filteredRow;
+  });
 
   return (
     <main className="h-screen w-full">
@@ -52,43 +79,21 @@ export default function Page() {
         <table>
           <thead>
             <tr>
-              {headers.map((header) => {
-                if (
-                  header === "order-id" ||
-                  header === "purchase-date" ||
-                  header === "buyer-name" ||
-                  header === "buyer-phone-number" ||
-                  header === "sku" ||
-                  header === "quantity-purchased"
-                ) {
-                  return (
-                    <th className="p-2 border" key={header}>
-                      {header}
-                    </th>
-                  );
-                }
-              })}
+              {filteredHeaders.map((header) => (
+                <th className="p-2 border" key={header}>
+                  {header}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {data.map((row, index) => (
+            {filteredData.map((row, index) => (
               <tr key={index}>
-                {headers.map((header) => {
-                  if (
-                    header === "order-id" ||
-                    header === "purchase-date" ||
-                    header === "buyer-name" ||
-                    header === "buyer-phone-number" ||
-                    header === "sku" ||
-                    header === "quantity-purchased"
-                  ) {
-                    return (
-                      <td className="p-2 border" key={header}>
-                        {row[header]}
-                      </td>
-                    );
-                  }
-                })}
+                {filteredHeaders.map((header) => (
+                  <td className="p-2 border" key={header}>
+                    {row[header]}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>
