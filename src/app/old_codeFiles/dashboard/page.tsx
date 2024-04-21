@@ -2,7 +2,10 @@
 
 import { Input } from "@/components/ui/input";
 import useDataStore from "@/state-store/dataStore";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import databaseService from "@/appwrite/database";
 
 export default function Page() {
   const { data, setData, headers, setHeaders } = useDataStore((state) => ({
@@ -43,8 +46,14 @@ export default function Page() {
         reader.readAsText(file);
       }
     },
-    [setData]
+    [data]
   );
+
+  const onClickHandler = () => {
+    databaseService.getPost(data);
+    console.log(data);
+    console.log(typeof data);
+  };
 
   const filteredHeaders = headers.filter((header) =>
     [
@@ -72,6 +81,9 @@ export default function Page() {
 
   return (
     <main className="h-screen w-full">
+      <Button variant={"outline"} onClick={onClickHandler}>
+        Order Upload
+      </Button>
       <section className="h-full w-1/2 m-auto flex flex-col items-center justify-center gap-4">
         <Input type="file" accept=".txt" onChange={fileHandler} />
       </section>
