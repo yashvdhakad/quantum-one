@@ -118,7 +118,7 @@ function page() {
   };
 
   return (
-    <main className="max-w-7xl m-auto py-6 h-screen grid grid-cols-2 grid-rows-2 gap-1">
+    <main className="max-w-7xl m-auto py-6 h-full grid grid-cols-1 grid-rows-4 gap-4">
       <DashCard cardData={inventoryCardData} />
       <DashCard cardData={orderCardData} />
       <DashCard cardData={workData} />

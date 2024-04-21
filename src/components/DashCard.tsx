@@ -7,13 +7,13 @@ interface DashCardProps {
 
 const DashCard: React.FC<DashCardProps> = ({ cardData }) => {
   return (
-    <section className="p-4 bg-gray-950 hover:bg-gray-950/5 transition-all flex flex-col gap-4">
+    <section className="p-4 bg-gray-950 flex flex-col gap-4 rounded-lg">
       <Link href={cardData.b}>
-        <div className="text-2xl hover:cursor-pointer uppercase font-bold text-orange-100 text-center">
+        <div className="text-2xl hover:cursor-pointer uppercase font-bold text-orange-200">
           {cardData.a}
         </div>
       </Link>
-      <div className="h-full grid grid-cols-3 grid-rows-2 gap-1">
+      <div className="h-full grid grid-cols-6 grid-rows-1 gap-1">
         <SmallDashCard SmallCardData={cardData.z} />
         <SmallDashCard SmallCardData={cardData.y} />
         <SmallDashCard SmallCardData={cardData.x} />
