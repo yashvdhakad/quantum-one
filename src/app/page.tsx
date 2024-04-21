@@ -7,7 +7,7 @@ import bg from "@/assets/logo-white.png";
 
 export default function Page() {
   return (
-    <main className="w-full h-screen flex flex-col justify-between items-center">
+    <main className="w-full h-screen flex flex-col justify-between items-center dark">
       <section className="w-full m-4">
         <nav className="max-w-7xl mx-auto p-2 flex justify-between items-center">
           <div className="w-12">
