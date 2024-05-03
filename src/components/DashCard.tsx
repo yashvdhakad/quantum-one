@@ -9,7 +9,7 @@ const DashCard: React.FC<DashCardProps> = ({ cardData }) => {
   return (
     <section className="p-4 bg-gray-950 flex flex-col gap-4 rounded-lg">
       <Link href={cardData.b}>
-        <div className="text-2xl hover:cursor-pointer uppercase font-bold text-orange-200">
+        <div className="text-xl hover:cursor-pointer uppercase font-bold text-orange-200">
           {cardData.a}
         </div>
       </Link>

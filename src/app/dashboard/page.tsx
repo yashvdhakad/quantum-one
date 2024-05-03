@@ -2,7 +2,7 @@ import DashCard from "@/components/DashCard";
 
 function page() {
   const inventoryCardData = {
-    a: "Inventory & Stock Management",
+    a: "Inventory & Stock Highlights",
     b: "/dashboard/inventory",
     z: {
       o: 20,
@@ -31,7 +31,7 @@ function page() {
   };
 
   const orderCardData = {
-    a: "Online Orders",
+    a: "Online Order's Highlights",
     b: "/dashboard/online-orders",
     z: {
       o: 20,
@@ -60,37 +60,8 @@ function page() {
   };
 
   const workData = {
-    a: "Work Progess & Management",
+    a: "Work Progess Highlights",
     b: "/dashboard/tasks",
-    z: {
-      o: 20,
-      p: "7mm MDF Sheets",
-    },
-    y: {
-      o: 14,
-      p: "5mm MDF Sheets",
-    },
-    x: {
-      o: 5,
-      p: "3mm MDF Sheets",
-    },
-    w: {
-      o: 10,
-      p: "1mm Golden Acrylic Sheets",
-    },
-    v: {
-      o: 8,
-      p: "3mm Golden Acrylic Sheets",
-    },
-    t: {
-      o: 3,
-      p: "5mm Black Acrylic Sheets",
-    },
-  };
-
-  const nullData = {
-    a: "Empty Category",
-    b: "/dashboard/null",
     z: {
       o: 20,
       p: "7mm MDF Sheets",
@@ -122,7 +93,6 @@ function page() {
       <DashCard cardData={inventoryCardData} />
       <DashCard cardData={orderCardData} />
       <DashCard cardData={workData} />
-      <DashCard cardData={nullData} />
     </main>
   );
 }

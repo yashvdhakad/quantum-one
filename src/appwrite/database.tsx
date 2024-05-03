@@ -12,16 +12,28 @@ export class DatabaseService {
     this.databases = new Databases(this.client);
   }
 
-  async getPost(slug: any) {
+  async getOrders() {
+    try {
+      return await this.databases.listDocuments(
+        conf.appwriteDatabaseID,
+        conf.appwriteIOCollectionID,
+      );
+    } catch (error) {
+      console.log("Appwrite Service :: getOrders() :: ", error);
+      return false;
+    }
+  }
+
+  async addOrder(slug: any) {
     try {
       return await this.databases.createDocument(
         conf.appwriteDatabaseID,
-        conf.appwriteCollectionID,
+        conf.appwriteIOCollectionID,
         ID.unique(),
         slug
       );
     } catch (error) {
-      console.log("Appwrite Service :: getPost() :: ", error);
+      console.log("Appwrite Service :: addOrder() :: ", error);
       return false;
     }
   }
